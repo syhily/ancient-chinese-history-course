@@ -35,6 +35,11 @@
 
 - [下载最新版 EPUB](https://github.com/syhily/ancient-chinese-history-course/releases/latest/download/ancient-chinese-history-course.epub)（直链，始终指向最新 Release）
 
+## 致谢
+
+- 正文文字底本来自 [mahavivo/History-of-China](https://github.com/mahavivo/History-of-China) ——该项目作者自行 OCR 并精校了本书全文（其在线阅读版见 [mahavivo.github.io/ancientchina](https://mahavivo.github.io/ancientchina)）。该底本把原书页底圈码脚注改为章尾 `[n]` 连号注；本项目在此基础上将 1270 条脚注转回随文形式，并以 MinerU 双模式识别与扫描原页逐条交叉核对。
+- 卷首图版的 17 幅文物照片来自维基共享资源及各博物馆官网，逐图来源见 `assets/insert-NN.txt`。
+
 ## 版权说明
 
 本书著作权归原作者及河南大学出版社所有。本电子版仅供个人学习与研究使用，不进行任何商业用途。内容请以纸质原书为准。若涉及侵权，请联系仓库所有者，核实后将立即删除。
