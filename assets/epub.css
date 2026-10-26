@@ -260,7 +260,7 @@ h1 {
 }
 
 /* 章扉页（h1.zhang，由 chapter-titlepage.lua 标记并拆分「第X章」标题，
-   --split-level=2 下该页只有章题）：最大兼容方案——居中横排宋体，
+   --split-level=1 下该页只有章题）：最大兼容方案——居中横排宋体，
    「第X章」小字独占一行置于章题上方。不用 :has、竖排、绝对定位、
    伪元素等特性（Boox NeoReader 对旧的仿古籍封面方案渲染为空白页） */
 h1.zhang {

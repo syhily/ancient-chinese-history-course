@@ -27,7 +27,7 @@ perl -0777 -pe 's{/\*.*?\*/}{}gs' assets/epub.css > "$stripped_css"
 pandoc metadata.yaml "${chapters[@]}" \
   --from markdown+footnotes+inline_notes+fenced_divs+smart \
   --to epub3 \
-  --split-level=2 \
+  --split-level=1 \
   --lua-filter=scripts/newpage.lua \
   --lua-filter=scripts/ascii-heading-ids.lua \
   --lua-filter=scripts/chapter-titlepage.lua \

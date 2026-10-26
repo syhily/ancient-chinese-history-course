@@ -18,7 +18,7 @@
 | `assets/epub.css` | EPUB 样式（正文用阅读器默认字体；标题黑体 / 引文楷体 / 扉页仿宋；另有本书专用的表格、表题、链式世系表样式） |
 | `assets/cover.jpg` | 封面图 |
 | `scripts/inline-footnotes.py` | 把精校 TXT 的「行内 [n] + 章末注文列表」机械转换为 pandoc 行内脚注（1270 条，程序校验一一对应） |
-| `scripts/build.sh` | pandoc 构建脚本（`--split-level=2` 按节拆分文件即硬分页；CSS 剥注释后打包，兼容 Clearview） |
+| `scripts/build.sh` | pandoc 构建脚本（`--split-level=1` 按章拆分文件，章内连续排版；`\newpage` 经 Lua 过滤器转空标题拆出独立页；CSS 剥注释后打包，兼容 Clearview） |
 | `scripts/newpage.lua` | pandoc Lua 过滤器：`\newpage` 转硬分页 |
 | `scripts/ascii-heading-ids.lua` | pandoc Lua 过滤器：标题锚点改写为 ASCII 序号（sec-N），否则中文锚点在部分阅读器中目录无法跳转 |
 | `scripts/chapter-titlepage.lua` | pandoc Lua 过滤器：「第X章」标题拆分为小字章次 + 大字章题，章扉页居中宋体 |
