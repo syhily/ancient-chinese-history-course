@@ -1,0 +1,35 @@
+name: Build EPUB
+
+on:
+  push:
+    tags: ['v*', '[0-9]+.[0-9]+.[0-9]+']
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pandoc
+        # 固定与本地一致的版本：Ubuntu 仓库的 pandoc 3.1.3 会把行块渲染成无
+        # class 的 <p>，导致诗歌选文丢失楷体和缩进版式
+        run: |
+          PANDOC_VERSION=3.12.1
+          wget -q "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-1-amd64.deb"
+          sudo dpkg -i "pandoc-${PANDOC_VERSION}-1-amd64.deb"
+
+      - name: Build EPUB
+        run: bash scripts/build.sh
+
+      - name: Rename to ASCII（GitHub Release 会把非 ASCII 资产名改成 default.epub）
+        # 固定文件名、不带版本号：保证 releases/latest/download/ 直链长期有效
+        run: cp build/*.epub "build/ancient-chinese-history-course.epub"
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/ancient-chinese-history-course.epub
+          generate_release_notes: true
