@@ -549,11 +549,14 @@ figcaption {
 
 .notice {
   max-width: 32em;
-  margin: 3em auto 0;
-  padding: 1.6em 1.8em;
+  margin: 1.2em auto 0;
+  padding: 1.2em 1.5em;
   border: 1px solid #c8c4ba;
   border-radius: 8px;
   background: #f9f8f5;
+  /* 卡片整体不跨页：两段说明文字须同页显示 */
+  page-break-inside: avoid;
+  break-inside: avoid;
 }
 .notice p {
   text-indent: 0;
