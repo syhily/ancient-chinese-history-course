@@ -515,15 +515,24 @@ blockquote .line-block {
     FangSong, FangSong_GB2312, "CWTEX-F", serif;
 }
 
-/* ---------- 插图（卷首手迹、照片等扫描图版） ---------- */
+/* ---------- 插图（卷首图版） ---------- */
 
-/* 本书内嵌图片均为整页图版（配合 \newpage 拆出的独立 xhtml），
-   全局规则：居中并限制在视口高度内，保证一页完整显示不溢出 */
+/* 本书内嵌图片均为整页图版（配合 \newpage 拆出的独立 xhtml）。
+   图与图注必须同页：figure 不跨页，图片限高预留图注空间（图注最长
+   两行，约占 6vh），整体不超过视口高度 */
+figure {
+  margin: 0;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
 img {
   display: block;
   margin: 0 auto;
   max-width: 100%;
   max-height: 86vh;
+}
+figure img {
+  max-height: 78vh;
 }
 
 /* 插页图注：图下方居中灰字小一号 */
