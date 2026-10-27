@@ -7,6 +7,10 @@
 -- 注意：`\newpage` 是 LaTeX 命令，markdown 的 raw_tex 扩展将其解析为
 -- RawBlock("tex")（EPUB 输出会静默丢弃）；仅当 raw_tex 被禁用、
 -- 退化为普通段落时才走 Para 分支，两者都须处理。
+-- 警告：unlisted 空标题不只是自己不进 nav 目录——pandoc（3.12 实测）会把
+-- 它之后、下一个正式章标题之前的所有节/目标题一并从 nav 吞掉。因此章内
+-- 禁止使用 \newpage；章前地图等独立页放到排序在该章之前的
+-- manuscript/chNN-00-maps.md 里。
 local function newpage_header()
   return pandoc.Header(1, {}, pandoc.Attr("", { "unlisted" }))
 end
