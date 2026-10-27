@@ -24,8 +24,17 @@ done
 stripped_css="build/epub.stripped.css"
 perl -0777 -pe 's{/\*.*?\*/}{}gs' assets/epub.css > "$stripped_css"
 
-pandoc metadata.yaml "${chapters[@]}" \
-  --from markdown+footnotes+inline_notes+fenced_divs+smart \
+# 书稿中的 HTML 注释（校勘、存疑记录）仅供维护，不应进入 EPUB，
+# 构建时先剥离注释生成 build/ 下的临时副本；图片等资源按项目根目录解析，不受影响
+stripped_chapters=()
+for f in "${chapters[@]}"; do
+  out="build/$(basename "$f")"
+  perl -CSD -Mutf8 -0777 -pe 's{<!--.*?-->}{}gs' "$f" > "$out"
+  stripped_chapters+=("$out")
+done
+
+pandoc metadata.yaml "${stripped_chapters[@]}" \
+  --from markdown+footnotes+inline_notes+fenced_divs+smart+east_asian_line_breaks \
   --to epub3 \
   --split-level=1 \
   --lua-filter=scripts/newpage.lua \
